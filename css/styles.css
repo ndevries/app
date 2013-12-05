@@ -11,3 +11,8 @@ body {
 .tab-bar {
 	margin-bottom: 0.9375rem;
 }
+
+.menu-bars {
+	color: #fff;
+	padding: 0 0.72222rem;
+}
