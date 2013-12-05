@@ -14,5 +14,10 @@ body {
 
 .menu-bars {
 	color: #fff;
-	padding: 0 0.72222rem;
+	padding: 0 1rem;
+	display: block;
+}
+
+.menu-bars:hover {
+	color: #fff;
 }
