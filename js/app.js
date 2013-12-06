@@ -1,17 +1,25 @@
-document.addEventListener('deviceready', this.onDeviceReady, false);
+var myApp = angular.module('myApp', [
+	'ngRoute',
+	'myAppControllers'
+]);
 
-function onDeviceReady() {
-	console.log("deviceready");
-}
-
-function togglePlayPause() {
-	var audio = document.getElementById('audio');
-	var controls = document.getElementById('controls');
-	if (audio.paused || audio.ended) {
-		controls.innerHTML = "<i class='fa fa-pause'></i>";
-		audio.play();
-	} else {
-		controls.innerHTML = "<i class='fa fa-play'></i>";
-		audio.pause();
+myApp.config(['$routeProvider',
+	function($routeProvider) {
+		$routeProvider.
+			when('/audios', {
+				templateUrl: 'partials/AudioList.html',
+				controller: 'AudioListController'
+			}).
+			when('/audios/:audioId', {
+				templateUrl: 'partials/AudioSingle.html',
+				controller: 'AudioSingleController'
+			}).
+			when('/videos', {
+				templateUrl: 'partials/VideoList.html',
+				controller: 'VideoListController'
+			}).
+			otherwise({
+				redirectTo: '/audios'
+			});
 	}
-}
+]);
