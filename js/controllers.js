@@ -20,7 +20,7 @@ myControllers.controller('LoginController', ['$scope', '$http', function($scope,
 	$scope.submit = function(form) {
 		if (form.$valid) {
 			// call API to check if login is successful
-			alert('username: ' + $scope.user.name + ', password: ' + $scope.user.password);
+			alert('User: ' + $scope.user.name + '\nPass: ' + $scope.user.password);
 		} else {
 			alert('Invalid!');
 		}

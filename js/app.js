@@ -1,5 +1,6 @@
-var myApp = angular.module('myApp', [
+var app = angular.module('app', [
 	'ngRoute',
+	'ngAnimate',
 	'myFilters',
 	'myServices',
 	'myDirectives',
@@ -7,7 +8,7 @@ var myApp = angular.module('myApp', [
 ]);
 
 // Routing
-myApp.config(['$routeProvider',	function($routeProvider) {
+app.config(['$routeProvider',	function($routeProvider) {
 	$routeProvider.when('/', {templateUrl: 'partials/Landing.html'});
 	$routeProvider.when('/login', {templateUrl: 'partials/Login.html', controller: 'LoginController'});
 	$routeProvider.when('/public', {templateUrl: 'partials/Public.html'});
