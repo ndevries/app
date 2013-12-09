@@ -12,6 +12,18 @@ myControllers.controller('AudioSingleController', ['$scope', '$routeParams', '$h
 	});
 }]);
 
+myControllers.controller('VideoListController', ['$scope', '$http', function($scope, $http) {
+	$http.get('data/video/video.json').success(function(data) {
+		$scope.videos = data;
+	});
+}]);
+
+myControllers.controller('VideoSingleController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+	$http.get('data/video/' + $routeParams.videoId + '.json').success(function(data) {
+		$scope.video = data;
+	});
+}]);
+
 myControllers.controller('LoginController', ['$scope', '$http', function($scope, $http) {
 	$scope.user = {};
 	$http.get('data/user/user.json').success(function(data) {
