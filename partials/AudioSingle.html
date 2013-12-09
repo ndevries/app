@@ -1,7 +1,5 @@
 <h4>{{audio.name}} <small>{{audio.author}}</small></h4>
-<button class="btn btn-primary btn-lg"><i class="fa fa-play fa-fw"></i></button>
+<a href="{{audio.url}}" class="btn btn-primary btn-lg"><i class="fa fa-play fa-fw"></i></a>
 <button class="btn btn-default btn-lg"><i class="fa fa-download fa-fw"></i></button>
-<!-- <audio controls>
-	<source src="{{audio.url}}" type="audio/mpeg" />
-</audio> -->
+<!-- <audio controls ng-src="{{audio.url}}"></audio> -->
 <p>{{audio.description}}</p>

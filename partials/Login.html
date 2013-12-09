@@ -1,0 +1,30 @@
+<form novalidate name="myForm" autocomplete="off">
+	<div class="form-group">
+		<input type="text" class="form-control input-lg" placeholder="IBO #" name="userName" ng-model="user.name" required ng-minlength="3" ng-maxlength="10">
+		<span class="help-block" ng-show="myForm.userName.$error.minlength">Too short</span>
+		<span class="help-block" ng-show="myForm.userName.$error.maxlength">Too long</span>
+	</div>
+	<div class="form-group">
+		<input type="password" class="form-control input-lg" placeholder="Password" name="userPassword" ng-model="user.password" required ng-minlength="3" ng-maxlength="10">
+		<span class="help-block" ng-show="myForm.userPassword.$error.minlength">Too short</span>
+		<span class="help-block" ng-show="myForm.userPassword.$error.maxlength">Too long</span>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-primary btn-block btn-lg" ng-click="submit(myForm)" ng-disabled="!myForm.$valid">Login</button>
+	</div>
+</form>
+<hr>
+<dl>
+	<dt>Input</dt>
+	<dd>user = {{user.name}}</dd>
+	<dd>pass = {{user.password}}</dd>
+	<dt>Name errors</dt>
+	<dd>Valid = {{myForm.userName.$valid}}</dd>
+	<dd>Errors = {{myForm.userName.$error}}</dd>
+	<dt>Password errors</dt>
+	<dd>Valid = {{myForm.userPassword.$valid}}</dd>
+	<dd>Errors = {{myForm.userPassword.$error}}</dd>
+	<dt>Form errors</dt>
+	<dd>Valid = {{myForm.$valid}}</dd>
+	<dd>Required error = {{!!myForm.$error.required}}</dd>
+</dl>

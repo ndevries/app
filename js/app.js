@@ -1,25 +1,19 @@
 var myApp = angular.module('myApp', [
 	'ngRoute',
-	'myAppControllers'
+	'myFilters',
+	'myServices',
+	'myDirectives',
+	'myControllers'
 ]);
 
-myApp.config(['$routeProvider',
-	function($routeProvider) {
-		$routeProvider.
-			when('/audios', {
-				templateUrl: 'partials/AudioList.html',
-				controller: 'AudioListController'
-			}).
-			when('/audios/:audioId', {
-				templateUrl: 'partials/AudioSingle.html',
-				controller: 'AudioSingleController'
-			}).
-			when('/videos', {
-				templateUrl: 'partials/VideoList.html',
-				controller: 'VideoListController'
-			}).
-			otherwise({
-				redirectTo: '/audios'
-			});
-	}
-]);
+// Routing
+myApp.config(['$routeProvider',	function($routeProvider) {
+	$routeProvider.when('/', {templateUrl: 'partials/Landing.html'});
+	$routeProvider.when('/login', {templateUrl: 'partials/Login.html', controller: 'LoginController'});
+	$routeProvider.when('/public', {templateUrl: 'partials/Public.html'});
+	$routeProvider.when('/audios', {templateUrl: 'partials/AudioList.html',	controller: 'AudioListController'});
+	$routeProvider.when('/audios/:audioId', {templateUrl: 'partials/AudioSingle.html', controller: 'AudioSingleController'});
+	$routeProvider.when('/videos', {templateUrl: 'partials/VideoList.html', controller: 'VideoListController'});
+	$routeProvider.when('/videos/:videoId', {templateUrl: 'partials/VideoList.html', controller: 'VideoSingleController'});
+	$routeProvider.otherwise({redirectTo: '/'});
+}]);
