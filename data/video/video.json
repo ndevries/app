@@ -1,37 +1,32 @@
 [
 	{
-		"name" : "Audio 1",
+		"name" : "Video 1",
 		"id" : "1",
 		"author" : "Author Name"
 	},
 	{
-		"name" : "Audio 2",
+		"name" : "Video 2",
 		"id" : "2",
 		"author" : "Author Name"
 	},
 	{
-		"name" : "Audio 3",
+		"name" : "Video 3",
 		"id" : "3",
 		"author" : "Author Name"
 	},
 	{
-		"name" : "Audio 4",
+		"name" : "Video 4",
 		"id" : "4",
 		"author" : "Author Name"
 	},
 	{
-		"name" : "Audio 5",
+		"name" : "Video 5",
 		"id" : "5",
 		"author" : "Author Name"
 	},
 	{
-		"name" : "Audio 6",
+		"name" : "Video 6",
 		"id" : "6",
-		"author" : "Author Name"
-	},
-	{
-		"name" : "Audio 7",
-		"id" : "7",
 		"author" : "Author Name"
 	}
 ]

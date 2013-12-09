@@ -13,13 +13,13 @@ myControllers.controller('AudioSingleController', ['$scope', '$routeParams', '$h
 }]);
 
 myControllers.controller('VideoListController', ['$scope', '$http', function($scope, $http) {
-	$http.get('data/audio/audio.json').success(function(data) {
+	$http.get('data/video/video.json').success(function(data) {
 		$scope.videos = data;
 	});
 }]);
 
 myControllers.controller('VideoSingleController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
-	$http.get('data/audio/' + $routeParams.videoId + '.json').success(function(data) {
+	$http.get('data/video/' + $routeParams.videoId + '.json').success(function(data) {
 		$scope.video = data;
 	});
 }]);
