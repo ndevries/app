@@ -1,6 +1,6 @@
 .ng-enter {
-  -webkit-transition:0.2s linear all;
-  transition:0.2s linear all;
+  -webkit-transition:0.25s linear all;
+  transition:0.25s linear all;
 }
 
 .ng-enter,
