@@ -9,14 +9,14 @@ var app = angular.module('app', [
 
 // Routing
 app.config(['$routeProvider',	function($routeProvider) {
-	$routeProvider.when('/', {templateUrl: 'partials/Landing.html'});
-	$routeProvider.when('/login', {templateUrl: 'partials/Login.html', controller: 'LoginController'});
-	$routeProvider.when('/public', {templateUrl: 'partials/Public.html'});
-	$routeProvider.when('/messages', {templateUrl: 'partials/MessageList.html'});
-	$routeProvider.when('/resources', {templateUrl: 'partials/ResourceList.html'});
-	$routeProvider.when('/audios', {templateUrl: 'partials/AudioList.html',	controller: 'AudioListController'});
-	$routeProvider.when('/audios/:audioId', {templateUrl: 'partials/AudioSingle.html', controller: 'AudioSingleController'});
-	$routeProvider.when('/videos', {templateUrl: 'partials/VideoList.html', controller: 'VideoListController'});
-	$routeProvider.when('/videos/:videoId', {templateUrl: 'partials/VideoSingle.html', controller: 'VideoSingleController'});
+	$routeProvider.when('/', {templateUrl: 'views/Landing.html'});
+	$routeProvider.when('/login', {templateUrl: 'views/Login.html', controller: 'LoginController'});
+	$routeProvider.when('/public', {templateUrl: 'views/Public.html'});
+	$routeProvider.when('/messages', {templateUrl: 'views/MessageList.html'});
+	$routeProvider.when('/resources', {templateUrl: 'views/ResourceList.html'});
+	$routeProvider.when('/audios', {templateUrl: 'views/AudioList.html',	controller: 'AudioListController'});
+	$routeProvider.when('/audios/:audioId', {templateUrl: 'views/AudioSingle.html', controller: 'AudioSingleController'});
+	$routeProvider.when('/videos', {templateUrl: 'views/VideoList.html', controller: 'VideoListController'});
+	$routeProvider.when('/videos/:videoId', {templateUrl: 'views/VideoSingle.html', controller: 'VideoSingleController'});
 	$routeProvider.otherwise({redirectTo: '/'});
 }]);

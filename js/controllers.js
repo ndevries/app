@@ -6,9 +6,10 @@ myControllers.controller('AudioListController', ['$scope', '$http', function($sc
 	});
 }]);
 
-myControllers.controller('AudioSingleController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+myControllers.controller('AudioSingleController', ['$scope', '$routeParams', '$http', '$sce', function($scope, $routeParams, $http, $sce) {
 	$http.get('api/process.php?type=audios&id=' + $routeParams.audioId).success(function(data) {
 		$scope.audio = data;
+		$scope.audio.url = $sce.trustAsResourceUrl($scope.audio.url);
 	});
 }]);
 
@@ -18,9 +19,10 @@ myControllers.controller('VideoListController', ['$scope', '$http', function($sc
 	});
 }]);
 
-myControllers.controller('VideoSingleController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+myControllers.controller('VideoSingleController', ['$scope', '$routeParams', '$http', '$sce', function($scope, $routeParams, $http, $sce) {
 	$http.get('api/process.php?type=videos&id=' + $routeParams.videoId).success(function(data) {
 		$scope.video = data;
+		$scope.video.url = $sce.trustAsResourceUrl($scope.video.url);
 	});
 }]);
 
