@@ -8,7 +8,7 @@ var app = angular.module('app', [
 ]);
 
 // Routing
-app.config(['$routeProvider',	function($routeProvider) {
+app.config(function($routeProvider) {
 	$routeProvider.when('/', {templateUrl: 'views/Landing.html'});
 	$routeProvider.when('/login', {templateUrl: 'views/Login.html', controller: 'LoginController'});
 	$routeProvider.when('/public', {templateUrl: 'views/Public.html'});
@@ -19,4 +19,4 @@ app.config(['$routeProvider',	function($routeProvider) {
 	$routeProvider.when('/videos', {templateUrl: 'views/VideoList.html', controller: 'VideoListController'});
 	$routeProvider.when('/videos/:videoId', {templateUrl: 'views/VideoSingle.html', controller: 'VideoSingleController'});
 	$routeProvider.otherwise({redirectTo: '/'});
-}]);
+});

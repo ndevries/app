@@ -8,7 +8,7 @@ if ($_GET["type"] == "audios") {
 
         $status = array(
             "error"   => false,
-            "message" => ""
+            "message" => "Error message here"
         );
 
         $data = array(
@@ -22,10 +22,10 @@ if ($_GET["type"] == "audios") {
 
         $status = array(
             "error"   => false,
-            "message" => ""
+            "message" => "Error message here"
         );
 
-        for ($i = 0; $i < 7; $i++) {
+        for ($i = 0; $i < 9; $i++) {
 
             $data[] = array(
                 "name"   => "Audio " . ($i + 1),
@@ -45,7 +45,7 @@ if ($_GET["type"] == "audios") {
 
         $status = array(
             "error"   => false,
-            "message" => ""
+            "message" => "Error message here"
         );
 
         $data = array(
@@ -59,7 +59,7 @@ if ($_GET["type"] == "audios") {
 
         $status = array(
             "error"   => false,
-            "message" => ""
+            "message" => "Error message here"
         );
 
         for ($i = 0; $i < 7; $i++) {
@@ -80,21 +80,13 @@ if ($_GET["type"] == "audios") {
 
     $status = array(
         "error"   => false,
-        "message" => ""
+        "message" => "Invalid login. Please try again."
     );
 
     $data = array(
         "id"       => "12345",
         "name"     => "Nicholas",
         "password" => "password"
-    );
-
-} else {
-
-    // Error message
-    $status = array(
-        "error"   => true,
-        "message" => "Invalid type"
     );
 
 }
