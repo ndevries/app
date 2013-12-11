@@ -43,6 +43,11 @@ if ($_GET["type"] == "audios") {
 
     if (isset($_GET["id"])) {
 
+        $status = array(
+            "error"   => false,
+            "message" => ""
+        );
+
         $data = array(
             "name"        => "Video " . $_GET["id"],
             "author"      => "William Shakespeare",
@@ -51,6 +56,11 @@ if ($_GET["type"] == "audios") {
         );
 
     } else {
+
+        $status = array(
+            "error"   => false,
+            "message" => ""
+        );
 
         for ($i = 0; $i < 7; $i++) {
 
@@ -68,6 +78,11 @@ if ($_GET["type"] == "audios") {
 
     // Logic for user
 
+    $status = array(
+        "error"   => false,
+        "message" => ""
+    );
+
     $data = array(
         "id"       => "12345",
         "name"     => "Nicholas",
@@ -77,16 +92,16 @@ if ($_GET["type"] == "audios") {
 } else {
 
     // Error message
-
-    $data = array(
-        "error" => "Invalid type"
+    $status = array(
+        "error"   => true,
+        "message" => "Invalid type"
     );
 
 }
 
 // Create json
-$json["status"][] = $status;
-$json["data"][] = $data;
+$json["status"] = $status;
+$json["data"] = $data;
 
 // Return json
 header('Content-Type: application/json');
