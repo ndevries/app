@@ -1,6 +1,18 @@
 var myControllers = angular.module('myControllers', []);
 
-myControllers.controller('AudioListController', function($scope, $http) {
+myControllers.controller('MainController', function($scope, $location, Page) {
+    $scope.Page = Page;
+    $scope.location = $location;
+    $scope.links = [
+        { url: "/audios", name: "Listen" },
+        { url: "/videos", name: "Watch" },
+        { url: "/messages", name: "Messages" },
+        { url: "/resources", name: "Resources" }
+    ];
+});
+
+myControllers.controller('AudioListController', function($scope, $http, Page) {
+    Page.setName('Listen');
     $http.get('api/process.php?type=audios').success(function(data) {
         $scope.json   = data;
         $scope.audios = $scope.json.data;
@@ -8,7 +20,8 @@ myControllers.controller('AudioListController', function($scope, $http) {
     });
 });
 
-myControllers.controller('AudioSingleController', function($scope, $routeParams, $http, $sce) {
+myControllers.controller('AudioSingleController', function($scope, $routeParams, $http, $sce, Page) {
+    Page.setName('Listen');
     $http.get('api/process.php?type=audios&id=' + $routeParams.audioId).success(function(data) {
         $scope.json      = data;
         $scope.audio     = $scope.json.data;
@@ -17,7 +30,8 @@ myControllers.controller('AudioSingleController', function($scope, $routeParams,
     });
 });
 
-myControllers.controller('VideoListController', function($scope, $http) {
+myControllers.controller('VideoListController', function($scope, $http, Page) {
+    Page.setName('Watch');
     $http.get('api/process.php?type=videos').success(function(data) {
         $scope.json   = data;
         $scope.videos = $scope.json.data;
@@ -25,7 +39,8 @@ myControllers.controller('VideoListController', function($scope, $http) {
     });
 });
 
-myControllers.controller('VideoSingleController', function($scope, $routeParams, $http, $sce) {
+myControllers.controller('VideoSingleController', function($scope, $routeParams, $http, $sce, Page) {
+    Page.setName('Watch');
     $http.get('api/process.php?type=videos&id=' + $routeParams.videoId).success(function(data) {
         $scope.json      = data;
         $scope.video     = $scope.json.data;
@@ -34,21 +49,21 @@ myControllers.controller('VideoSingleController', function($scope, $routeParams,
     });
 });
 
-myControllers.controller('LoginController', function($scope, $http) {
+myControllers.controller('LoginController', function($scope, $http, $location) {
     $scope.submit = function(form) {
         $http.get('api/process.php?type=users&user=' + $scope.user.name + '&pass=' + $scope.user.password).success(function(data) {
             $scope.json   = data;
             $scope.errors = $scope.json.status;
             if ($scope.errors.error == false) {
-                // redirect on successful login
                 window.localStorage.id     = $scope.json.data.id;
                 window.localStorage.secret = $scope.json.data.secret;
+                $location.path('/audios');
             }
         });
     };
 });
 
-myControllers.controller('LogoutController', function() {
-    // redirect to home
+myControllers.controller('LogoutController', function($location) {
     window.localStorage.clear();
+    $location.path('/');
 });
