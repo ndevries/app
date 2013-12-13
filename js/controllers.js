@@ -36,13 +36,19 @@ myControllers.controller('VideoSingleController', function($scope, $routeParams,
 
 myControllers.controller('LoginController', function($scope, $http) {
     $scope.submit = function(form) {
-        $http.get('api/process.php?type=users').success(function(data) {
+        $http.get('api/process.php?type=users&user=' + $scope.user.name + '&pass=' + $scope.user.password).success(function(data) {
             $scope.json   = data;
             $scope.errors = $scope.json.status;
             if ($scope.errors.error == false) {
                 // redirect on successful login
-
+                window.localStorage.id     = $scope.json.data.id;
+                window.localStorage.secret = $scope.json.data.secret;
             }
         });
     };
+});
+
+myControllers.controller('LogoutController', function() {
+    // redirect to home
+    window.localStorage.clear();
 });

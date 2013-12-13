@@ -78,16 +78,28 @@ if ($_GET["type"] == "audios") {
 
     // Logic for user
 
-    $status = array(
-        "error"   => false,
-        "message" => "Invalid login. Please try again."
-    );
+    if ($_GET["user"] == "admin" && $_GET["pass"] == "admin") {
+        $secret = md5(uniqid(rand(), TRUE));
 
-    $data = array(
-        "id"       => "12345",
-        "name"     => "Nicholas",
-        "password" => "password"
-    );
+        $status = array(
+            "error"   => false,
+            "message" => "Error message here"
+        );
+
+        $data = array(
+            "id"     => "101",
+            "user"   => $_GET["user"],
+            "pass"   => $_GET["pass"],
+            "secret" => $secret
+        );
+    } else {
+        $status = array(
+            "error"   => true,
+            "message" => "Invalid login. Please try again."
+        );
+
+        $data = array();
+    }
 
 }
 
