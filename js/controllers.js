@@ -39,7 +39,7 @@ myControllers.controller('MenuController', function($rootScope, accelerometer, $
               'z: ' + acceleration.z + '\n';
     }, function (e) {
         console.log('Error finding acceleration ' + e);
-    });
+    }, options);
 
 });
 
