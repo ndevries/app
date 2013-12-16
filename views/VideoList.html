@@ -3,7 +3,7 @@
 	<input class="form-control input-lg" placeholder="Search" ng-model="query">
 </div>
 <div class="list-group">
-	<a href="#/videos/{{video.id}}" class="list-group-item" ng-repeat="video in videos | filter:query">
+	<a ng-click="go('/videos/' + video.id)" class="list-group-item" ng-repeat="video in videos | filter:query">
 		<h4 class="list-group-item-heading">{{video.name}}</h4>
 		<p class="list-group-item-text">{{video.author}}</p>
 	</a>

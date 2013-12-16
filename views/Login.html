@@ -10,18 +10,3 @@
 		<button class="btn btn-primary btn-block btn-lg" ng-click="submit(myForm)" ng-disabled="myForm.$invalid">Login</button>
 	</div>
 </form>
-<hr>
-<dl>
-	<dt>Input</dt>
-	<dd>user = {{user.name}}</dd>
-	<dd>pass = {{user.password}}</dd>
-	<dt>Name errors</dt>
-	<dd>Valid = {{myForm.userName.$valid}}</dd>
-	<dd>Errors = {{myForm.userName.$error}}</dd>
-	<dt>Password errors</dt>
-	<dd>Valid = {{myForm.userPassword.$valid}}</dd>
-	<dd>Errors = {{myForm.userPassword.$error}}</dd>
-	<dt>Form errors</dt>
-	<dd>Valid = {{myForm.$valid}}</dd>
-	<dd>Required error = {{!!myForm.$error.required}}</dd>
-</dl>
