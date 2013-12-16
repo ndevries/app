@@ -57,6 +57,7 @@
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.media" />
     <gap:plugin name="org.apache.cordova.network-information" />
+    <gap:plugin name="org.apache.cordova.device-motion" />
 
     <!-- Platforms -->
     <gap:platform name="ios" />
