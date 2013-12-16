@@ -3,11 +3,11 @@
 .slide-right.ng-enter,
 .slide-right.ng-leave
 {
-    -webkit-transition: 200ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
-    -moz-transition: 200ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
-    -ms-transition: 200ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
-    -o-transition: 200ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
-    transition: 200ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
+    -webkit-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
     position: relative;
     display: block;
 }
@@ -41,11 +41,11 @@
 .slide-left.ng-enter,
 .slide-left.ng-leave
 {
-    -webkit-transition: 200ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
-    -moz-transition: 200ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
-    -ms-transition: 200ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
-    -o-transition: 200ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
-    transition: 200ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
+    -webkit-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
     position: relative;
     display: block;
 }
