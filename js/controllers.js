@@ -1,18 +1,10 @@
 var myControllers = angular.module('myControllers', []);
 
-myControllers.controller('MainController', function($scope, $location, Page) {
-    $scope.Page = Page;
-    $scope.location = $location;
-    $scope.links = [
-        { url: "/audios", name: "Listen" },
-        { url: "/videos", name: "Watch" },
-        { url: "/messages", name: "Messages" },
-        { url: "/resources", name: "Resources" }
-    ];
+myControllers.controller('MainController', function($scope, $location) {
+    // main actions
 });
 
-myControllers.controller('AudioListController', function($scope, $http, Page) {
-    Page.setName('Listen');
+myControllers.controller('AudioListController', function($scope, $http) {
     $http.get('api/process.php?type=audios').success(function(data) {
         $scope.json   = data;
         $scope.audios = $scope.json.data;
@@ -20,8 +12,7 @@ myControllers.controller('AudioListController', function($scope, $http, Page) {
     });
 });
 
-myControllers.controller('AudioSingleController', function($scope, $routeParams, $http, $sce, Page) {
-    Page.setName('Listen');
+myControllers.controller('AudioSingleController', function($scope, $routeParams, $http, $sce) {
     $http.get('api/process.php?type=audios&id=' + $routeParams.audioId).success(function(data) {
         $scope.json      = data;
         $scope.audio     = $scope.json.data;
@@ -30,8 +21,7 @@ myControllers.controller('AudioSingleController', function($scope, $routeParams,
     });
 });
 
-myControllers.controller('VideoListController', function($scope, $http, Page) {
-    Page.setName('Watch');
+myControllers.controller('VideoListController', function($scope, $http) {
     $http.get('api/process.php?type=videos').success(function(data) {
         $scope.json   = data;
         $scope.videos = $scope.json.data;
@@ -39,8 +29,7 @@ myControllers.controller('VideoListController', function($scope, $http, Page) {
     });
 });
 
-myControllers.controller('VideoSingleController', function($scope, $routeParams, $http, $sce, Page) {
-    Page.setName('Watch');
+myControllers.controller('VideoSingleController', function($scope, $routeParams, $http, $sce) {
     $http.get('api/process.php?type=videos&id=' + $routeParams.videoId).success(function(data) {
         $scope.json      = data;
         $scope.video     = $scope.json.data;
