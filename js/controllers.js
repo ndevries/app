@@ -26,16 +26,17 @@ myControllers.controller('MainController', function($scope, $location, $rootScop
 
 myControllers.controller('MenuController', function($rootScope, accelerometer, $scope) {
 
+    var options = {frequency: 3000}
+
     // header options
     $rootScope.showNav  = false;
     $rootScope.showMenu = false;
     $rootScope.title    = '';
 
-    accelerometer.getCurrentAcceleration(function (acceleration) {
-        $scope.test = 'Acceleration X: ' + acceleration.x + '\n' +
-              'Acceleration Y: ' + acceleration.y + '\n' +
-              'Acceleration Z: ' + acceleration.z + '\n' +
-              'Timestamp: '      + acceleration.timestamp + '\n';
+    accelerometer.watchAcceleration(function (acceleration) {
+        $scope.test = 'x: ' + acceleration.x + '\n' +
+              'y: ' + acceleration.y + '\n' +
+              'z: ' + acceleration.z + '\n';
     }, function (e) {
         console.log('Error finding acceleration ' + e);
     });
