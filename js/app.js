@@ -10,6 +10,7 @@ var app = angular.module('app', [
 // Routing
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {templateUrl: 'views/Landing.html'});
+	$routeProvider.when('/menu', {templateUrl: 'views/Menu.html'});
 	$routeProvider.when('/login', {templateUrl: 'views/Login.html', controller: 'LoginController'});
 	$routeProvider.when('/logout', {template: ' ', controller: 'LogoutController'});
 	$routeProvider.when('/public', {templateUrl: 'views/Public.html'});
