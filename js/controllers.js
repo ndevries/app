@@ -26,20 +26,18 @@ myControllers.controller('MainController', function($scope, $location, $rootScop
 
 myControllers.controller('MenuController', function($rootScope, accelerometer, $scope) {
 
-    var options = {frequency: 3000}
-
     // header options
     $rootScope.showNav  = false;
     $rootScope.showMenu = false;
     $rootScope.title    = '';
 
-    accelerometer.watchAcceleration(function (acceleration) {
-        $scope.test = 'x: ' + acceleration.x + '\n' +
-              'y: ' + acceleration.y + '\n' +
-              'z: ' + acceleration.z + '\n';
+    accelerometer.getCurrentAcceleration(function (acceleration) {
+        $scope.x = acceleration.x;
+        $scope.y = acceleration.y;
+        $scope.z = acceleration.z;
     }, function (e) {
         console.log('Error finding acceleration ' + e);
-    }, options);
+    });
 
 });
 
