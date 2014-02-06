@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, $http, $state) {
+.controller('LoginCtrl', function($scope, $http, $state) {
 
     $scope.user = {};
     $scope.submit = function() {
@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
                 $scope.message = data.status.message;
                 window.localStorage.id     = data.data.id;
                 window.localStorage.secret = data.data.secret;
-                $state.href('/adopt');
+                $state.go('menu');
             } else {
                 $scope.message = data.status.message;
             }

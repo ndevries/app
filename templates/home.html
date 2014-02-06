@@ -1,26 +1,18 @@
 <!--
     This template loads for the 'home' state (app.js)
 -->
-<view title="'Login'">
-    <content has-header="true">
+<view title="'Brand'">
+    <content has-header="true" padding="true">
         <div class="card" ng-show="message">
             <div class="item item-text-wrap">
                 {{ message }}
             </div>
         </div>
-        <div class="list list-inset">
-            <form novalidate name="loginForm" ng-submit="submit()" autocomplete="off">
-                <label class="item item-input">
-                    <span class="input-label">IBO #</span>
-                    <input type="text" ng-model="user.name" required>
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input type="password" ng-model="user.password" required>
-                </label>
-                <toggle>Remember Me</toggle>
-                <button type="submit" class="button button-positive button-block" ng-disabled="loginForm.$invalid">Login</button>
-            </form>
-        </div>
+        <button class="button button-block button-positive" ui-sref="login">
+            Sign in
+        </button>
+        <button class="button button-block button-light" ui-sref="public">
+            Public view
+        </button>
     </content>
 </view>
