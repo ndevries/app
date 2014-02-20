@@ -3,33 +3,33 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Ionic Seed App</title>
+    <title>App</title>
 
-    <!-- ionic css -->
-    <link href="lib/css/ionic.css" rel="stylesheet">
+    <!-- load stylesheets -->
+    <link href="/bower_components/ionic/release/css/ionic.min.css" rel="stylesheet">
 
-    <!-- your app's css -->
-    <link href="css/app.css" rel="stylesheet">
+    <!-- my stylesheets -->
+    <link href="/css/app.css" rel="stylesheet">
 
-    <!-- angularjs scripts -->
-    <script src="lib/js/ionic.js"></script>
-    <script src="lib/js/angular/angular.js"></script>
-    <script src="lib/js/angular/angular-animate.js"></script>
-    <script src="lib/js/angular/angular-sanitize.js"></script>
-    <script src="lib/js/angular-ui/angular-ui-router.js"></script>
-    <script src="lib/js/ionic-angular.js"></script>
+    <!-- load scripts -->
+    <script src="/bower_components/ionic/release/js/ionic.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/bower_components/ionic/release/js/ionic-angular.min.js"></script>
 
-    <!-- your app's script -->
-    <script src="js/app.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/controllers.js"></script>
+    <!-- my scripts -->
+    <script src="/js/app.js"></script>
+    <script src="/js/services.js"></script>
+    <script src="/js/controllers.js"></script>
 </head>
 
-<body ng-app="starter" animation="slide-left-right-ios7">
+<body ng-app="app" animation="slide-left-right-ios7">
 
-    <nav-bar type="bar-positive" animation="nav-title-slide-ios7" back-button-type="button-icon" back-button-icon="ion-ios7-arrow-back"></nav-bar>
+    <ion-nav-bar type="bar-positive" animation="nav-title-slide-ios7" back-button-type="button-icon button-clear" back-button-icon="ion-ios7-arrow-back"></ion-nav-bar>
 
-    <nav-view></nav-view>
+    <ion-nav-view></ion-nav-view>
 
 </body>
 </html>

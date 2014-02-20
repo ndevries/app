@@ -13,7 +13,7 @@
         $data["secret"] = md5(uniqid(rand(), TRUE));
     } else {
         $status["error"]    = true;
-        $status["message"]  = "Log in failed. Use [admin] for IBO # and password.";
+        $status["message"]  = "Login failed. Use [admin] for IBO # and password.";
     }
 
     // Return JSON

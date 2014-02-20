@@ -1,0 +1,16 @@
+<ion-view title="'Videos'">
+    <ion-content has-header="true">
+        <div class="card" ng-show="message">
+            <div class="item item-text-wrap">
+                {{ message }}
+            </div>
+        </div>
+        <div class="list">
+            <a ng-repeat="video in videos" class="item item-thumbnail-left" href="#/videos/{{ video.id }}">
+                <img src="http://placehold.it/150x150&text=:]">
+                <h2>{{ video.name }}</h2>
+                <p>{{ video.author }}</p>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

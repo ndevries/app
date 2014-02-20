@@ -1,32 +1,61 @@
-angular.module('starter.controllers', [])
+angular.module('app.controllers', [])
 
 .controller('LoginCtrl', function($scope, $http, $state) {
+
+    if(localStorage.getItem("id") !== null && localStorage.getItem("secret") !== null) {
+        $state.go('menu');
+    }
 
     $scope.user = {};
     $scope.submit = function() {
         $http.post('http://localhost:8080/api/users/index.php', $scope.user).success(function(data) {
             if (data.status.error == false) {
-                $scope.message = data.status.message;
-                window.localStorage.id     = data.data.id;
-                window.localStorage.secret = data.data.secret;
+                $scope.message         = data.status.message;
+                localStorage["id"]     = data.data.id;
+                localStorage["secret"] = data.data.secret;
                 $state.go('menu');
             } else {
                 $scope.message = data.status.message;
             }
+        }).error(function(data, status) {
+            $scope.message = "Error fetching data, please try again.";
         });
     };
 
 })
 
-// A simple controller that fetches a list of data from a service
-.controller('PetIndexCtrl', function($scope, PetService) {
-    // "Pets" is a service returning mock data (services.js)
-    $scope.pets = PetService.all();
+.controller('LogoutCtrl', function($state, $rootScope) {
+
+    localStorage.clear();
+    $state.go('landing');
+
 })
 
+.controller('VideosIndexCtrl', function($scope, $http) {
 
-// A simple controller that shows a tapped item's data
-.controller('PetDetailCtrl', function($scope, $stateParams, PetService) {
-    // "Pets" is a service returning mock data (services.js)
-    $scope.pet = PetService.get($stateParams.petId);
+    $scope.videos = {};
+    $http.post('http://localhost:8080/api/videos/index.php').success(function(data) {
+        if (data.status.error == false) {
+            $scope.videos = data.data;
+        } else {
+            $scope.message = data.status.message;
+        }
+    }).error(function(data, status) {
+        $scope.message = "Error fetching data, please try again.";
+    });
+
+})
+
+.controller('VideosSingleCtrl', function($scope, $http) {
+
+    $http.post('http://localhost:8080/api/videos/single.php').success(function(data) {
+        if (data.status.error == false) {
+            $scope.video = data.data;
+        } else {
+            $scope.message = data.status.message;
+        }
+    }).error(function(data, status) {
+        $scope.message = "Error fetching data, please try again.";
+    });
+
 });

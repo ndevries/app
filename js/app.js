@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
+angular.module('app', ['ionic', 'app.services', 'app.controllers'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -16,15 +16,20 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    .state('home', {
-      url: '/home',
-      templateUrl: 'templates/home.html'
+    .state('landing', {
+      url: '/landing',
+      templateUrl: 'templates/landing.html'
     })
 
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
+    })
+
+    .state('logout', {
+      url: '/logout',
+      controller: 'LogoutCtrl'
     })
 
     .state('public', {
@@ -37,63 +42,20 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
       templateUrl: 'templates/menu.html'
     })
 
-    // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "templates/tabs.html"
+    .state('videos-index', {
+      url: '/videos',
+      templateUrl: 'templates/videos/index.html',
+      controller: 'VideosIndexCtrl'
     })
 
-    // the pet tab has its own child nav-view and history
-    .state('tab.pet-index', {
-      url: '/pets',
-      views: {
-        'pets-tab': {
-          templateUrl: 'templates/pet-index.html',
-          controller: 'PetIndexCtrl'
-        }
-      }
+    .state('videos-single', {
+      url: '/videos/:id',
+      templateUrl: 'templates/videos/single.html',
+      controller: 'VideosSingleCtrl'
     })
-
-    .state('tab.pet-detail', {
-      url: '/pet/:petId',
-      views: {
-        'pets-tab': {
-          templateUrl: 'templates/pet-detail.html',
-          controller: 'PetDetailCtrl'
-        }
-      }
-    })
-
-    .state('tab.adopt', {
-      url: '/adopt',
-      views: {
-        'adopt-tab': {
-          templateUrl: 'templates/adopt.html'
-        }
-      }
-    })
-
-    .state('tab.about', {
-      url: '/about',
-      views: {
-        'about-tab': {
-          templateUrl: 'templates/about.html'
-        }
-      }
-    })
-
-    .state('tab.login', {
-      url: '/login',
-      views: {
-        'login-tab': {
-          templateUrl: 'templates/test.html'
-        }
-      }
-    });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/landing');
 
 });
 
