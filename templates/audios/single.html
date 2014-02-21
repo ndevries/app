@@ -1,4 +1,4 @@
-<ion-view title="video.name">
+<ion-view title="audio.name">
     <ion-content has-header="true">
         <div class="card" ng-show="message">
             <div class="item item-text-wrap">
@@ -8,16 +8,16 @@
         <div class="list card">
 
             <div class="item item-text-wrap">
-                <h2>{{ video.name }}</h2>
-                <p>{{ video.author }}</p>
+                <h2>{{ audio.name }}</h2>
+                <p>{{ audio.author }}</p>
             </div>
 
             <div class="item item-image">
-                <video controls width="100%" ng-src="{{ video.url }}"></video>
+                <audio controls width="100%" ng-src="{{ audio.url }}"></audio>
             </div>
 
-            <div class="item item-text-wrap" ng-show="video.description">
-                <p>{{ video.description }}</p>
+            <div class="item item-text-wrap" ng-show="audio.description">
+                <p>{{ audio.description }}</p>
             </div>
 
         </div>

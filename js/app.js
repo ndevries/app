@@ -18,7 +18,8 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers'])
 
     .state('landing', {
       url: '/landing',
-      templateUrl: 'templates/landing.html'
+      templateUrl: 'templates/landing.html',
+      controller: 'LandingCtrl'
     })
 
     .state('login', {
@@ -53,6 +54,18 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers'])
       templateUrl: 'templates/videos/single.html',
       controller: 'VideosSingleCtrl'
     })
+
+    .state('audios-index', {
+      url: '/audios',
+      templateUrl: 'templates/audios/index.html',
+      controller: 'AudiosIndexCtrl'
+    })
+
+    .state('audios-single', {
+      url: '/audios/:id',
+      templateUrl: 'templates/audios/single.html',
+      controller: 'AudiosSingleCtrl'
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/landing');
