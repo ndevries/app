@@ -1,42 +1,23 @@
-<ion-view title="'Messages'">
+<ion-view title="'Messages'" right-buttons="rightButtons">
     <ion-content has-header="true">
         <div class="card" ng-show="message">
             <div class="item item-text-wrap">
                 {{ message }}
             </div>
         </div>
-        <div class="list card">
+        <div class="list card" ng-repeat="message in messages">
 
             <div class="item item-avatar">
-                <img ng-src="http://placehold.it/150x150&text=:]">
-                <h2>John Doe</h2>
-                <p>August 21, 2013 9:30 AM</p>
+                <img ng-src="{{ message.avatar }}">
+                <h2>{{ message.name }}</h2>
+                <p>{{ message.time }}</p>
             </div>
 
             <div class="item item-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, consequuntur, quidem, quam iusto itaque in tenetur blanditiis temporibus rerum sequi vel et facere ad enim similique molestias quas ut sapiente!</p>
-            </div>
-
-        </div>
-        <div class="list card">
-
-            <div class="item item-avatar">
-                <img ng-src="http://placehold.it/150x150&text=:]">
-                <h2>Me</h2>
-                <p>August 21, 2013 9:30 AM</p>
-            </div>
-
-            <div class="item item-body">
-                <p ng-click="show()">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, consequuntur, quidem, quam iusto itaque in tenetur blanditiis temporibus rerum sequi vel et facere ad enim similique molestias quas ut sapiente!</p>
+                <p>{{ message.message }}</p>
             </div>
 
         </div>
 
     </ion-content>
-
-    <div class="bar bar-footer bar-stable">
-        <div class="button-bar">
-            <a class="button" href="#/messages/create">Create new</a>
-        </div>
-    </div>
 </ion-view>

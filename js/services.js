@@ -3,11 +3,12 @@ angular.module('app.services', [])
 .factory('loading', function($ionicLoading) {
 
     var loading = $ionicLoading.show({
-        content: 'Loading',
+        content: 'Loading...',
         animation: 'fade-in',
-        showBackdrop: true,
+        showBackdrop: false,
         maxWidth: 200
     });
+    loading.hide();
 
     return {
         show: function() {
