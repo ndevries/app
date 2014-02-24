@@ -18,13 +18,13 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers'])
 
     .state('landing', {
       url: '/landing',
-      templateUrl: 'templates/landing.html',
+      templateUrl: 'views/landing.html',
       controller: 'LandingCtrl'
     })
 
     .state('login', {
       url: '/login',
-      templateUrl: 'templates/login.html',
+      templateUrl: 'views/login.html',
       controller: 'LoginCtrl'
     })
 
@@ -35,36 +35,48 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers'])
 
     .state('public', {
       url: '/public',
-      templateUrl: 'templates/public.html'
+      templateUrl: 'views/public.html'
     })
 
     .state('menu', {
       url: '/menu',
-      templateUrl: 'templates/menu.html'
+      templateUrl: 'views/menu.html'
     })
 
     .state('videos-index', {
       url: '/videos',
-      templateUrl: 'templates/videos/index.html',
+      templateUrl: 'views/videos/index.html',
       controller: 'VideosIndexCtrl'
     })
 
     .state('videos-single', {
       url: '/videos/:id',
-      templateUrl: 'templates/videos/single.html',
+      templateUrl: 'views/videos/single.html',
       controller: 'VideosSingleCtrl'
     })
 
     .state('audios-index', {
       url: '/audios',
-      templateUrl: 'templates/audios/index.html',
+      templateUrl: 'views/audios/index.html',
       controller: 'AudiosIndexCtrl'
     })
 
     .state('audios-single', {
       url: '/audios/:id',
-      templateUrl: 'templates/audios/single.html',
+      templateUrl: 'views/audios/single.html',
       controller: 'AudiosSingleCtrl'
+    })
+
+    .state('messages-index', {
+      url: '/messages',
+      templateUrl: 'views/messages/index.html',
+      controller: 'MessagesIndexCtrl'
+    })
+
+    .state('messages-create', {
+      url: '/messages/create',
+      templateUrl: 'views/messages/create.html',
+      controller: 'MessagesCreateCtrl'
     });
 
   // if none of the above states are matched, use this as the fallback

@@ -12,11 +12,10 @@
                 <p>{{ video.author }}</p>
             </div>
 
-            <div class="item item-image">
-                <video controls width="100%" ng-src="{{ video.url }}"></video>
-            </div>
-
-            <div class="item item-text-wrap" ng-show="video.description">
+            <div class="item item-body">
+                <video controls width="100%" ng-src="{{ video.url }}">
+                    Video unsupported
+                </video>
                 <p>{{ video.description }}</p>
             </div>
 

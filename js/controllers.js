@@ -106,4 +106,22 @@ angular.module('app.controllers', [])
         $scope.message = "Error fetching data, please try again.";
     });
 
+})
+
+.controller('MessagesIndexCtrl', function($scope, $http, loading) {
+
+    loading.show();
+
+    setTimeout(function(){get()}, 1000);
+
+    function get() {
+        loading.hide();
+    }
+
+})
+
+.controller('MessagesCreateCtrl', function($scope, $http) {
+
+
+
 });

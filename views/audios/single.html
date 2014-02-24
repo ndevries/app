@@ -12,11 +12,10 @@
                 <p>{{ audio.author }}</p>
             </div>
 
-            <div class="item item-image">
-                <audio controls width="100%" ng-src="{{ audio.url }}"></audio>
-            </div>
-
-            <div class="item item-text-wrap" ng-show="audio.description">
+            <div class="item item-body">
+                <audio controls width="100%" ng-src="{{ audio.url }}">
+                    Audio unsupported
+                </audio>
                 <p>{{ audio.description }}</p>
             </div>
 
