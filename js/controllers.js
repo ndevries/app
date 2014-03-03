@@ -8,17 +8,9 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('LoginCtrl', function($scope, $http, $state, loading) {
+.controller('LoginCtrl', function($scope, $http, $state, loading, buttons) {
 
-    $scope.leftButtons = [
-        {
-            content: '<i class="icon ion-ios7-arrow-back"></i> Cancel',
-            type: 'button-icon button-clear',
-            tap: function(e) {
-                $state.go('landing');
-            }
-        }
-    ];
+    $scope.leftButtons = buttons.make('ion-ios7-arrow-back', 'landing', 'Cancel');
 
     if(localStorage.getItem("id") !== null && localStorage.getItem("secret") !== null) {
         $state.go('menu');
@@ -55,17 +47,9 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('VideosIndexCtrl', function($scope, $http, loading, $state) {
+.controller('VideosIndexCtrl', function($scope, $http, loading, buttons) {
 
-    $scope.leftButtons = [
-        {
-            content: '<i class="icon ion-navicon"></i>',
-            type: 'button-icon button-clear',
-            tap: function(e) {
-                $state.go('menu');
-            }
-        }
-    ];
+    $scope.leftButtons = buttons.make('ion-navicon', 'menu');
 
     $scope.videos = {};
 
@@ -85,17 +69,9 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('VideosSingleCtrl', function($scope, $http, $stateParams, $sce, loading, $state) {
+.controller('VideosSingleCtrl', function($scope, $http, $stateParams, $sce, loading, buttons) {
 
-    $scope.leftButtons = [
-        {
-            content: '<i class="icon ion-ios7-arrow-back"></i> Back',
-            type: 'button-icon button-clear',
-            tap: function(e) {
-                $state.go('videos-index');
-            }
-        }
-    ];
+    $scope.leftButtons = buttons.make('ion-ios7-arrow-back', 'videos-index', 'Back');
 
     $scope.json = {};
     $scope.json.id = $stateParams.id;
@@ -117,17 +93,9 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('AudiosIndexCtrl', function($scope, $http, loading, $state) {
+.controller('AudiosIndexCtrl', function($scope, $http, loading, buttons) {
 
-    $scope.leftButtons = [
-        {
-            content: '<i class="icon ion-navicon"></i>',
-            type: 'button-icon button-clear',
-            tap: function(e) {
-                $state.go('menu');
-            }
-        }
-    ];
+    $scope.leftButtons = buttons.make('ion-navicon', 'menu');
 
     $scope.audios = {};
 
@@ -147,17 +115,9 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('AudiosSingleCtrl', function($scope, $http, $stateParams, $sce, loading, $state) {
+.controller('AudiosSingleCtrl', function($scope, $http, $stateParams, $sce, loading, buttons) {
 
-    $scope.leftButtons = [
-        {
-            content: '<i class="icon ion-ios7-arrow-back"></i> Back',
-            type: 'button-icon button-clear',
-            tap: function(e) {
-                $state.go('audios-index');
-            }
-        }
-    ];
+    $scope.leftButtons = buttons.make('ion-ios7-arrow-back', 'audios-index', 'Back');
 
     $scope.json = {};
     $scope.json.id = $stateParams.id;
@@ -179,27 +139,10 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('MessagesIndexCtrl', function($scope, $http, loading, $state) {
+.controller('MessagesIndexCtrl', function($scope, $http, loading, buttons) {
 
-    $scope.leftButtons = [
-        {
-            content: '<i class="icon ion-navicon"></i>',
-            type: 'button-icon button-clear',
-            tap: function(e) {
-                $state.go('menu');
-            }
-        }
-    ];
-
-    $scope.rightButtons = [
-        {
-            content: '<i class="icon ion-ios7-compose-outline"></i>',
-            type: 'button-icon button-clear',
-            tap: function(e) {
-                $state.go('messages-create');
-            }
-        }
-    ];
+    $scope.leftButtons = buttons.make('ion-navicon', 'menu');
+    $scope.rightButtons = buttons.make('ion-ios7-compose-outline', 'messages-create');
 
     loading.show();
 
@@ -217,16 +160,8 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('MessagesCreateCtrl', function($scope, $http, $state) {
+.controller('MessagesCreateCtrl', function($scope, $http, buttons) {
 
-    $scope.leftButtons = [
-        {
-            content: '<i class="icon ion-ios7-arrow-back"></i> Cancel',
-            type: 'button-icon button-clear',
-            tap: function(e) {
-                $state.go('messages-index');
-            }
-        }
-    ];
+    $scope.leftButtons = buttons.make('ion-ios7-arrow-back', 'messages-index', 'Cancel');
 
 });
