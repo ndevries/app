@@ -13,9 +13,19 @@
             </div>
 
             <div class="item item-body">
-                <audio controls width="100%" ng-src="{{ audio.url }}">
-                    Audio unsupported
-                </audio>
+                <audio data-player-control="audioPlayer" data-playlist="audioPlaylist" audio-player ng-src="{{ audio.url }}"></audio>
+                <button class="button button-block button-stable" ng-click="audioPlayer.playPause()">
+                    <span ng-hide="audioPlayer.playing"><i class="icon ion-ios7-play"></i></span>
+                    <span ng-show="audioPlayer.playing"><i class="icon ion-ios7-pause"></i></span>
+                </button>
+                <div class="progress">
+                    <div class="time">
+                        <small>{{ audioPlayer.formatTime}}</small> / {{ audioPlayer.formatDuration}}
+                    </div>
+                    <div class="progress-bar">
+                        <div class="playing" ng-style="{ width: audioPlayer.currentTime*100/audioPlayer.duration + '%' }"></div>
+                    </div>
+                </div>
                 <p>{{ audio.description }}</p>
             </div>
 

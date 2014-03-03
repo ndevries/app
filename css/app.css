@@ -1,8 +1,26 @@
 /* Your app's CSS, go crazy, make it your own */
 
-.ionic-logo {
-  display: block;
-  margin: 15px auto;
-  width: 96px;
-  height: 96px;
+.progress {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.progress .time {
+    text-align: right;
+}
+
+.progress-bar {
+    position: relative;
+    height: 4px;
+    width: 100%;
+    background-color: #ccc;
+}
+
+.progress-bar .playing {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 4px;
+    background-color: #444;
 }

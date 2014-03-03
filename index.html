@@ -19,8 +19,7 @@
     <script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="/bower_components/ionic/release/js/ionic-angular.min.js"></script>
-    <script src="/bower_components/videogular/videogular.js"></script>
-    <script src="/bower_components/videogular-controls/controls.js"></script>
+    <script src="/bower_components/angular-audio-playlist/dist/angular-audio-player.min.js"></script>
 
     <!-- my scripts -->
     <script src="/js/app.js"></script>
@@ -30,9 +29,38 @@
 
 <body ng-app="app" animation="slide-left-right-ios7">
 
-    <ion-nav-bar type="bar-positive" animation="nav-title-slide-ios7"></ion-nav-bar>
+    <ion-side-menus>
+        <ion-pane ion-side-menu-content>
+            <ion-nav-bar type="bar-positive" animation="nav-title-slide-ios7"></ion-nav-bar>
+            <ion-nav-view></ion-nav-view>
+        </ion-pane>
 
-    <ion-nav-view></ion-nav-view>
+        <ion-side-menu side="left">
+            <div class="list">
+                <a class="item" href="#/videos">
+                    Videos
+                </a>
+                <a class="item" href="#/audios">
+                    MP3s
+                </a>
+                <a class="item" href="#/messages">
+                    Messages
+                </a>
+                <a class="item" href="#/resources">
+                    Resources
+                </a>
+                <div class="item item-divider">
+                    Other
+                </div>
+                <a class="item" href="#/logout">
+                    Logout
+                </a>
+                <a class="item" href="#/public">
+                    Public View
+                </a>
+            </div>
+        </ion-side-menu>
+    </ion-side-menus>
 
 </body>
 </html>
