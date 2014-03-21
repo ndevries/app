@@ -1,30 +1,47 @@
 angular.module('app.services', [])
 
-.factory('loading', function($ionicLoading) {
+.service('API', function($http) {
 
-    var loading = $ionicLoading.show({
-        content: 'Loading...',
-        animation: 'fade-in',
-        showBackdrop: false,
-        maxWidth: 200
-    });
-    loading.hide();
+    var baseURL = 'http://www.proalliance.biz/api/default.aspx';
+    var apikey = '123';
 
-    return {
-        show: function() {
-            loading.show();
-        },
-        hide: function() {
-            loading.hide();
-        }
+    this.login = function(user) {
+
+        return $http.get(baseURL + '?apikey=' + apikey + '&method=login&UserName=' + user.id + '&Password=' + user.password);
+
     };
 
 })
 
-.factory('buttons', function($state) {
+.factory('Menu', function() {
+
+    var showMenu = {
+        state: false
+    };
 
     return {
-        make: function(icon, destination, text) {
+
+        state: function() {
+            return showMenu;
+        },
+
+        hide: function() {
+            showMenu.state = false;
+        },
+
+        show: function() {
+            showMenu.state = true;
+        }
+
+    };
+
+})
+
+.factory('Header', function($state) {
+
+    return {
+
+        button: function(icon, destination, text) {
             text = typeof text !== 'undefined' ? text : '';
             var button = [
                 {
@@ -37,6 +54,7 @@ angular.module('app.services', [])
             ];
             return button;
         }
+
     };
 
 });

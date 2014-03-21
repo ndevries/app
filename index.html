@@ -13,11 +13,11 @@
 
     <ion-side-menus>
         <ion-pane ion-side-menu-content>
-            <ion-nav-bar type="bar-positive" animation="nav-title-slide-ios7"></ion-nav-bar>
-            <ion-nav-view></ion-nav-view>
+            <ion-nav-bar type="bar-positive" animation="false"></ion-nav-bar>
+            <ion-nav-view animation="false"></ion-nav-view>
         </ion-pane>
 
-        <ion-side-menu side="left">
+        <ion-side-menu side="left" ng-controller="MenuCtrl" is-enabled="menu.state">
             <div class="list">
                 <a class="item" href="#/videos">
                     Videos
@@ -31,15 +31,15 @@
                 <a class="item" href="#/resources">
                     Resources
                 </a>
-                <div class="item item-divider">
+                <!-- <div class="item item-divider">
                     Other
-                </div>
+                </div> -->
                 <a class="item" href="#/logout">
                     Logout
                 </a>
-                <a class="item" href="#/public">
+                <!-- <a class="item" href="#/public">
                     Public View
-                </a>
+                </a> -->
             </div>
         </ion-side-menu>
     </ion-side-menus>

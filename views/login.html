@@ -1,6 +1,3 @@
-<!--
-    This template loads for the 'login' state (app.js)
--->
 <ion-view title="Login" left-buttons="leftButtons">
     <ion-content has-header="true">
         <div class="card" ng-show="message">
@@ -12,11 +9,11 @@
             <form novalidate name="loginForm" ng-submit="submit()" autocomplete="off">
                 <label class="item item-input">
                     <span class="input-label">IBO #</span>
-                    <input type="text" ng-model="json.name" required>
+                    <input type="text" ng-model="user.id" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Password</span>
-                    <input type="password" ng-model="json.password" required>
+                    <input type="password" ng-model="user.password" required>
                 </label>
                 <button type="submit" class="button button-positive button-block" ng-disabled="loginForm.$invalid">Login</button>
             </form>

@@ -1,5 +1,11 @@
 angular.module('app.controllers', [])
 
+.controller('MenuCtrl', function($scope, Menu) {
+
+    $scope.menu = Menu.state();
+
+})
+
 .controller('LandingCtrl', function($state) {
 
     if(localStorage.getItem("id") !== null && localStorage.getItem("secret") !== null) {
@@ -8,78 +14,60 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('LoginCtrl', function($scope, $http, $state, loading, buttons) {
+.controller('LoginCtrl', function($scope, $state, Header, Menu, API) {
 
-    $scope.leftButtons = buttons.make('ion-ios7-arrow-back', 'landing', 'Cancel');
+    $scope.user = {};
 
-    if(localStorage.getItem("id") !== null && localStorage.getItem("secret") !== null) {
-        $state.go('menu');
-    }
-
-    $scope.json = {};
+    $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'landing', 'Cancel');
 
     $scope.submit = function() {
 
-        loading.show();
+        API.login($scope.user)
+            .success(function(data) {
+                $scope.message = data;
+                Menu.show();
+                // $state.go('menu');
+            })
+            .error(function(data) {
+                $scope.message = 'Unauthorized';
+            });
 
-        $http.post('http://localhost:8080/api/users/index.php', $scope.json).success(function(data) {
-            loading.hide();
-            if (data.status.error == false) {
-                $scope.message         = data.status.message;
-                localStorage["id"]     = data.data.id;
-                localStorage["secret"] = data.data.secret;
-                $state.go('menu');
-            } else {
-                $scope.message = data.status.message;
-            }
-        }).error(function(data, status) {
-            loading.hide();
-            $scope.message = "Error fetching data, please try again.";
-        });
     };
 
 })
 
-.controller('LogoutCtrl', function($state, $rootScope) {
+.controller('LogoutCtrl', function($state) {
 
-    localStorage.clear();
     $state.go('landing');
 
 })
 
-.controller('VideosIndexCtrl', function($scope, $http, loading, buttons) {
+.controller('VideosIndexCtrl', function($scope, $http, Header) {
 
-    $scope.leftButtons = buttons.make('ion-navicon', 'menu');
+    $scope.leftButtons = Header.button('ion-navicon', 'menu');
 
     $scope.videos = {};
 
-    loading.show();
-
     $http.post('http://localhost:8080/api/videos/index.php').success(function(data) {
-        loading.hide();
         if (data.status.error == false) {
             $scope.videos = data.data;
         } else {
             $scope.message = data.status.message;
         }
     }).error(function(data, status) {
-        loading.hide();
         $scope.message = "Error fetching data, please try again.";
     });
 
 })
 
-.controller('VideosSingleCtrl', function($scope, $http, $stateParams, $sce, loading, buttons) {
+.controller('VideosSingleCtrl', function($scope, $http, $stateParams, $sce, Header) {
 
-    $scope.leftButtons = buttons.make('ion-ios7-arrow-back', 'videos-index', 'Back');
+    $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'videos-index', 'Back');
 
     $scope.json = {};
     $scope.json.id = $stateParams.id;
 
-    loading.show();
-
     $http.post('http://localhost:8080/api/videos/single.php', $scope.json).success(function(data) {
-        loading.hide();
         if (data.status.error == false) {
             $scope.video = data.data;
             $scope.video.url = $sce.trustAsResourceUrl($scope.video.url)
@@ -87,42 +75,35 @@ angular.module('app.controllers', [])
             $scope.message = data.status.message;
         }
     }).error(function(data, status) {
-        loading.hide();
         $scope.message = "Error fetching data, please try again.";
     });
 
 })
 
-.controller('AudiosIndexCtrl', function($scope, $http, loading, buttons) {
+.controller('AudiosIndexCtrl', function($scope, $http, Header) {
 
-    $scope.leftButtons = buttons.make('ion-navicon', 'menu');
+    $scope.leftButtons = Header.button('ion-navicon', 'menu');
 
     $scope.audios = {};
 
-    loading.show();
-
     $http.post('http://localhost:8080/api/audios/index.php').success(function(data) {
-        loading.hide();
         if (data.status.error == false) {
             $scope.audios = data.data;
         } else {
             $scope.message = data.status.message;
         }
     }).error(function(data, status) {
-        loading.hide();
         $scope.message = "Error fetching data, please try again.";
     });
 
 })
 
-.controller('AudiosSingleCtrl', function($scope, $http, $stateParams, $sce, loading, buttons) {
+.controller('AudiosSingleCtrl', function($scope, $http, $stateParams, $sce, Header) {
 
-    $scope.leftButtons = buttons.make('ion-ios7-arrow-back', 'audios-index', 'Back');
+    $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'audios-index', 'Back');
 
     $scope.json = {};
     $scope.json.id = $stateParams.id;
-
-    loading.show();
 
     $http.post('http://localhost:8080/api/audios/single.php', $scope.json).success(function(data) {
         loading.hide();
@@ -133,35 +114,30 @@ angular.module('app.controllers', [])
             $scope.message = data.status.message;
         }
     }).error(function(data, status) {
-        loading.hide();
         $scope.message = "Error fetching data, please try again.";
     });
 
 })
 
-.controller('MessagesIndexCtrl', function($scope, $http, loading, buttons) {
+.controller('MessagesIndexCtrl', function($scope, $http, Header) {
 
-    $scope.leftButtons = buttons.make('ion-navicon', 'menu');
-    $scope.rightButtons = buttons.make('ion-ios7-compose-outline', 'messages-create');
-
-    loading.show();
+    $scope.leftButtons = Header.button('ion-navicon', 'menu');
+    $scope.rightButtons = Header.button('ion-ios7-compose-outline', 'messages-create');
 
     $http.post('http://localhost:8080/api/messages/index.php').success(function(data) {
-        loading.hide();
         if (data.status.error == false) {
             $scope.messages = data.data;
         } else {
             $scope.message = data.status.message;
         }
     }).error(function(data, status) {
-        loading.hide();
         $scope.message = "Error fetching data, please try again.";
     });
 
 })
 
-.controller('MessagesCreateCtrl', function($scope, $http, buttons) {
+.controller('MessagesCreateCtrl', function($scope, $http, Header) {
 
-    $scope.leftButtons = buttons.make('ion-ios7-arrow-back', 'messages-index', 'Cancel');
+    $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'messages-index', 'Cancel');
 
 });
