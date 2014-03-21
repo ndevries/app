@@ -3,7 +3,7 @@
     [
         {
             "path": ".",
-            "folder_exclude_patterns": [".vagrant"],
+            "folder_exclude_patterns": [".vagrant", "node_modules"],
             "file_exclude_patterns": ["*.sublime-project"],
             "follow_symlinks": true
         }

@@ -1,4 +1,4 @@
-<ion-view title="audio.name" left-buttons="leftButtons">
+<ion-view title="{{ audio.name }}" left-buttons="leftButtons">
     <ion-content has-header="true">
         <div class="card" ng-show="message">
             <div class="item item-text-wrap">
@@ -20,7 +20,7 @@
                 </button>
                 <div class="progress">
                     <div class="time">
-                        <small>{{ audioPlayer.formatTime}}</small> / {{ audioPlayer.formatDuration}}
+                        <small>{{ audioPlayer.formatTime }}</small> / {{ audioPlayer.formatDuration }}
                     </div>
                     <div class="progress-bar">
                         <div class="playing" ng-style="{ width: audioPlayer.currentTime*100/audioPlayer.duration + '%' }"></div>
