@@ -6,8 +6,7 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers', 'audioPlayer'
 
     .state('landing', {
       url: '/landing',
-      templateUrl: 'views/landing.html',
-      controller: 'LandingCtrl'
+      templateUrl: 'views/landing.html'
     })
 
     .state('login', {
@@ -16,19 +15,9 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers', 'audioPlayer'
       controller: 'LoginCtrl'
     })
 
-    .state('logout', {
-      url: '/logout',
-      controller: 'LogoutCtrl'
-    })
-
     .state('public', {
       url: '/public',
       templateUrl: 'views/public.html'
-    })
-
-    .state('menu', {
-      url: '/menu',
-      templateUrl: 'views/menu.html'
     })
 
     .state('videos-index', {

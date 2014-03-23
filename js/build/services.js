@@ -1,6 +1,6 @@
 angular.module('app.services', [])
 
-.service('API', function($http) {
+.service('API', function($http, $state, Menu) {
 
     var baseURL = 'http://www.proalliance.biz/api/default.aspx';
     var apikey = '123';
@@ -10,6 +10,17 @@ angular.module('app.services', [])
         return $http.get(baseURL + '?apikey=' + apikey + '&method=login&UserName=' + user.id + '&Password=' + user.password);
 
     };
+
+    this.logout = function() {
+        Menu.hide();
+        $state.go('landing');
+    };
+
+    this.auth = false;
+    this.user = {};
+    this.audios = {};
+    this.videos = {};
+    this.messages = {};
 
 })
 

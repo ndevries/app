@@ -1,32 +1,51 @@
 angular.module('app.controllers', [])
 
-.controller('MenuCtrl', function($scope, Menu) {
+.controller('HeaderCtrl', function($scope) {
 
-    $scope.menu = Menu.state();
+    $scope.leftButtons = [
+        {
+            type: 'button-icon button-clear',
+            content: '<i class="icon ion-navicon"></i>',
+            tap: function(e) {
+                $scope.sideMenuController.toggleLeft();
+            }
+        }
+    ];
 
 })
 
-.controller('LandingCtrl', function($state) {
+.controller('MenuCtrl', function($scope, Menu, API) {
 
-    if(localStorage.getItem("id") !== null && localStorage.getItem("secret") !== null) {
-        $state.go('menu');
-    }
+    $scope.menu = Menu.state();
+
+    $scope.toggle = function() {
+        $scope.sideMenuController.toggleLeft();
+    };
+
+    $scope.logout = function() {
+        $scope.toggle();
+        API.logout();
+    };
 
 })
 
 .controller('LoginCtrl', function($scope, $state, Header, Menu, API) {
 
-    $scope.user = {};
 
-    $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'landing', 'Cancel');
+    $scope.user = {};
+    $scope.user.id = localStorage['id'];
 
     $scope.submit = function() {
 
         API.login($scope.user)
             .success(function(data) {
-                $scope.message = data;
                 Menu.show();
-                // $state.go('menu');
+                API.user = data.TheUser;
+                API.audios = data.MP3Categories;
+                API.messages = data.Posts;
+                localStorage['id'] = $scope.user.id;
+                $scope.sideMenuController.toggleLeft();
+                $state.go('videos-index');
             })
             .error(function(data) {
                 $scope.message = 'Unauthorized';
@@ -36,15 +55,7 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('LogoutCtrl', function($state) {
-
-    $state.go('landing');
-
-})
-
 .controller('VideosIndexCtrl', function($scope, $http, Header) {
-
-    $scope.leftButtons = Header.button('ion-navicon', 'menu');
 
     $scope.videos = {};
 
@@ -63,7 +74,6 @@ angular.module('app.controllers', [])
 .controller('VideosSingleCtrl', function($scope, $http, $stateParams, $sce, Header) {
 
     $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'videos-index', 'Back');
-
     $scope.json = {};
     $scope.json.id = $stateParams.id;
 
@@ -81,8 +91,6 @@ angular.module('app.controllers', [])
 })
 
 .controller('AudiosIndexCtrl', function($scope, $http, Header) {
-
-    $scope.leftButtons = Header.button('ion-navicon', 'menu');
 
     $scope.audios = {};
 
@@ -121,7 +129,6 @@ angular.module('app.controllers', [])
 
 .controller('MessagesIndexCtrl', function($scope, $http, Header) {
 
-    $scope.leftButtons = Header.button('ion-navicon', 'menu');
     $scope.rightButtons = Header.button('ion-ios7-compose-outline', 'messages-create');
 
     $http.post('http://localhost:8080/api/messages/index.php').success(function(data) {
@@ -138,6 +145,11 @@ angular.module('app.controllers', [])
 
 .controller('MessagesCreateCtrl', function($scope, $http, Header) {
 
+    $scope.post = {};
     $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'messages-index', 'Cancel');
+
+    $scope.send = function() {
+
+    };
 
 });

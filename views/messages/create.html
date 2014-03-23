@@ -6,10 +6,17 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="item">
-                Form here...
-            </div>
+        <div class="list list-inset">
+            <form novalidate name="loginForm" ng-submit="send()" autocomplete="off">
+                <label class="item item-input">
+                    <span class="input-label">To</span>
+                    <input type="text" ng-model="user.id" required>
+                </label>
+                <label class="item item-input">
+                    <textarea placeholder="Message" rows="5"></textarea>
+                </label>
+                <button type="submit" class="button button-positive button-block" ng-disabled="loginForm.$invalid">Login</button>
+            </form>
         </div>
 
     </ion-content>
