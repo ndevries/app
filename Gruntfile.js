@@ -16,13 +16,13 @@ module.exports = function(grunt) {
     concat: {
       main: {
         src: [
-          'bower_components/ionic/release/js/ionic.min.js',
-          'bower_components/angular/angular.min.js',
-          'bower_components/angular-animate/angular-animate.min.js',
-          'bower_components/angular-sanitize/angular-sanitize.min.js',
-          'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-          'bower_components/ionic/release/js/ionic-angular.min.js',
-          'bower_components/angular-audio-playlist/dist/angular-audio-player.min.js',
+          'bower_components/ionic/release/js/ionic.js',
+          'bower_components/angular/angular.js',
+          'bower_components/angular-animate/angular-animate.js',
+          'bower_components/angular-sanitize/angular-sanitize.js',
+          'bower_components/angular-ui-router/release/angular-ui-router.js',
+          'bower_components/ionic/release/js/ionic-angular.js',
+          'bower_components/angular-audio-playlist/dist/angular-audio-player.js',
           'js/build/app.js',
           'js/build/services.js',
           'js/build/controllers.js'

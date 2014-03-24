@@ -22,8 +22,8 @@ angular.module('app.services', [])
         $state.go('landing');
     };
 
-    this.post = function(message) {
-
+    this.post = function(data) {
+        return $http.post(baseURL + '?apikey=' + apikey + '&method=addpost', 'UserID=' + this.user.id + '&Message=' + data.Message);
     };
 
     this.auth = false;

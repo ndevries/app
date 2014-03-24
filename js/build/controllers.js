@@ -38,6 +38,7 @@ angular.module('app.controllers', [])
         $state.go('resources');
     }
 
+    $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'videos-index', 'Cancel');
     $scope.user = {};
     $scope.user.id = localStorage['id'];
 
@@ -122,12 +123,20 @@ angular.module('app.controllers', [])
 })
 
 // Controller for message compose
-.controller('MessagesCreateCtrl', function($scope, $http, Header) {
+.controller('MessagesCreateCtrl', function($scope, $http, Header, API) {
 
-    $scope.post = {};
     $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'messages-index', 'Cancel');
+    $scope.post = {};
 
     $scope.send = function() {
+
+        API.post($scope.post)
+            .success(function(data) {
+                $scope.message = data.status.message;
+            })
+            .error(function(data) {
+                $scope.message = 'An error occurred.';
+            });
 
     };
 

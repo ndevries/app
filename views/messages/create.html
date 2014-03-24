@@ -7,15 +7,11 @@
         </div>
 
         <div class="list list-inset">
-            <form novalidate name="loginForm" ng-submit="send()" autocomplete="off">
+            <form novalidate name="messageForm" ng-submit="send()" autocomplete="off">
                 <label class="item item-input">
-                    <span class="input-label">To</span>
-                    <input type="text" ng-model="user.id" required>
+                    <textarea placeholder="Message" rows="5" ng-model="post.Message" required></textarea>
                 </label>
-                <label class="item item-input">
-                    <textarea placeholder="Message" rows="5"></textarea>
-                </label>
-                <button type="submit" class="button button-positive button-block" ng-disabled="loginForm.$invalid">Send</button>
+                <button type="submit" class="button button-positive button-block" ng-disabled="messageForm.$invalid">Send</button>
             </form>
         </div>
 
