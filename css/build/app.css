@@ -27,8 +27,26 @@ body {
     background-color: #444;
 }
 
-img.logo {
-    display: block;
-    margin: 40px auto 50px auto;
-    max-width: 100%;
+.logo {
+    margin-top: 25px;
+    background-image: url(../img/proalliance.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 75px 75px;
+    height: 75px;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+@media only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+    .logo {
+        background-image: url(../img/proalliance@2x.png);
+    }
+}
+
+p.message {
+    margin-top: 0;
 }

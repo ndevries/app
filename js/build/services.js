@@ -1,19 +1,29 @@
 angular.module('app.services', [])
 
+// Main service to store all data
 .service('API', function($http, $state, Menu) {
 
     var baseURL = 'http://www.proalliance.biz/api/default.aspx';
     var apikey = '123';
 
     this.login = function(user) {
-
         return $http.get(baseURL + '?apikey=' + apikey + '&method=login&UserName=' + user.id + '&Password=' + user.password);
-
     };
 
     this.logout = function() {
         Menu.hide();
+        localStorage.removeItem('password');
+        this.auth = false;
+        this.user = {};
+        this.audios = {};
+        this.videos = {};
+        this.messages = {};
+        this.resources = {};
         $state.go('landing');
+    };
+
+    this.post = function(message) {
+
     };
 
     this.auth = false;
@@ -21,9 +31,11 @@ angular.module('app.services', [])
     this.audios = {};
     this.videos = {};
     this.messages = {};
+    this.resources = {};
 
 })
 
+// Service to control the side menu
 .factory('Menu', function() {
 
     var showMenu = {
@@ -48,6 +60,7 @@ angular.module('app.services', [])
 
 })
 
+// Service to control the header
 .factory('Header', function($state) {
 
     return {
@@ -66,6 +79,19 @@ angular.module('app.services', [])
             return button;
         }
 
+    };
+
+})
+
+// Service to help search arrays
+.service('Find', function() {
+
+    this.ById = function(arr, id) {
+        for (var d = 0, len = arr.length; d < len; d += 1) {
+            if (arr[d].id === parseInt(id)) {
+                return arr[d];
+            }
+        }
     };
 
 });

@@ -1,5 +1,6 @@
 angular.module('app', ['ionic', 'app.services', 'app.controllers', 'audioPlayer'])
 
+// Routing
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
@@ -18,6 +19,12 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers', 'audioPlayer'
     .state('public', {
       url: '/public',
       templateUrl: 'views/public.html'
+    })
+
+    .state('resources', {
+      url: '/resources',
+      templateUrl: 'views/resources/index.html',
+      controller: 'ResourceCtrl'
     })
 
     .state('videos-index', {
@@ -58,5 +65,51 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers', 'audioPlayer'
 
   $urlRouterProvider.otherwise('/landing');
 
-});
+})
 
+// Check for authentication
+.run(function($rootScope, $location, API, Menu, $state) {
+
+  if (localStorage.getItem('id') !== null && localStorage.getItem('password') !== null) {
+
+    var user = {
+      id: localStorage['id'],
+      password: localStorage['password']
+    };
+
+    API.login(user)
+      .success(function(data) {
+        Menu.show();
+        API.auth = true;
+        API.user = data.TheUser;
+        API.audios = data.MP3s;
+        API.videos = data.Videos;
+        API.messages = data.Posts;
+        API.intro = data.Resources.message;
+        API.resources = data.Resources.Links;
+      });
+
+  }
+
+  var publicRoutes = [
+    '/landing',
+    '/login',
+    '/public'
+  ];
+
+  var routeClean = function() {
+    for (var i = 0; i < publicRoutes.length; i++) {
+      if ($location.url() == publicRoutes[i]) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+    if (!routeClean() && !API.auth) {
+      $location.path('/landing');
+    }
+  });
+
+});

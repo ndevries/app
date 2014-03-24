@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.phonegap.proalliancemobileapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
 
-    <name>My App</name>
+    <name>Proalliance Mobile App</name>
 
     <description>
         Application that allows messaging, watching video, playing recordings, and viewing resources.
     </description>
 
-    <author email="nicholas@thirtyfive.io" href="http://www.thirtyfive.io">
-        Thirty Five
+    <author email="bill@thirtyfive.io" href="http://www.thirtyfive.io">
+        ThirtyFive, Inc.
     </author>
 
     <feature name="http://api.phonegap.com/1.0/device" />
@@ -55,11 +55,6 @@
     <gap:splash src="res/screen/ios/screen-ipad-landscape.png"     gap:platform="ios"     width="1024" height="768" />
 
     <!-- Plugins -->
-    <gap:plugin name="org.apache.cordova.file" />
-    <gap:plugin name="org.apache.cordova.media-capture" />
-    <gap:plugin name="org.apache.cordova.media" />
-    <gap:plugin name="org.apache.cordova.network-information" />
-    <gap:plugin name="org.apache.cordova.device-motion" />
 
     <!-- Platforms -->
     <gap:platform name="ios" />

@@ -7,14 +7,13 @@
         </div>
         <div class="list card" ng-repeat="message in messages">
 
-            <div class="item item-avatar">
-                <img ng-src="{{ message.avatar }}">
-                <h2>{{ message.name }}</h2>
-                <p>{{ message.time }}</p>
+            <div class="item item-text-wrap">
+                <h2>{{ message.Author }}</h2>
+                <p>{{ message.PostDate }}</p>
             </div>
 
             <div class="item item-body">
-                <p>{{ message.message }}</p>
+                <p class="message">{{ message.Message }}</p>
             </div>
 
         </div>

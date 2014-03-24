@@ -1,5 +1,6 @@
 angular.module('app.controllers', [])
 
+// Controller for app header
 .controller('HeaderCtrl', function($scope) {
 
     $scope.leftButtons = [
@@ -14,6 +15,7 @@ angular.module('app.controllers', [])
 
 })
 
+// Controller for app menu
 .controller('MenuCtrl', function($scope, Menu, API) {
 
     $scope.menu = Menu.state();
@@ -29,8 +31,12 @@ angular.module('app.controllers', [])
 
 })
 
+// Controller for login
 .controller('LoginCtrl', function($scope, $state, Header, Menu, API) {
 
+    if (API.auth) {
+        $state.go('resources');
+    }
 
     $scope.user = {};
     $scope.user.id = localStorage['id'];
@@ -39,13 +45,21 @@ angular.module('app.controllers', [])
 
         API.login($scope.user)
             .success(function(data) {
-                Menu.show();
-                API.user = data.TheUser;
-                API.audios = data.MP3Categories;
-                API.messages = data.Posts;
-                localStorage['id'] = $scope.user.id;
-                $scope.sideMenuController.toggleLeft();
-                $state.go('videos-index');
+                if (typeof data.status != 'undefined' && data.status.error) {
+                    $scope.message = data.status.message;
+                } else {
+                    Menu.show();
+                    API.auth = true;
+                    API.user = data.TheUser;
+                    API.audios = data.MP3s;
+                    API.videos = data.Videos;
+                    API.messages = data.Posts;
+                    API.intro = data.Resources.message;
+                    API.resources = data.Resources.Links;
+                    localStorage['id'] = $scope.user.id;
+                    localStorage['password'] = $scope.user.password;
+                    $state.go('resources');
+                }
             })
             .error(function(data) {
                 $scope.message = 'Unauthorized';
@@ -55,94 +69,59 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('VideosIndexCtrl', function($scope, $http, Header) {
+// Controller for resources
+.controller('ResourceCtrl', function($scope, API) {
 
-    $scope.videos = {};
-
-    $http.post('http://localhost:8080/api/videos/index.php').success(function(data) {
-        if (data.status.error == false) {
-            $scope.videos = data.data;
-        } else {
-            $scope.message = data.status.message;
-        }
-    }).error(function(data, status) {
-        $scope.message = "Error fetching data, please try again.";
-    });
+    $scope.intro = API.intro;
+    $scope.resources = API.resources;
 
 })
 
-.controller('VideosSingleCtrl', function($scope, $http, $stateParams, $sce, Header) {
+// Controller for video resource
+.controller('VideosIndexCtrl', function($scope, API) {
+
+    $scope.videos = API.videos;
+
+})
+
+// Controller for single video
+.controller('VideosSingleCtrl', function($scope, $stateParams, $sce, Header, API, Find) {
 
     $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'videos-index', 'Back');
-    $scope.json = {};
-    $scope.json.id = $stateParams.id;
-
-    $http.post('http://localhost:8080/api/videos/single.php', $scope.json).success(function(data) {
-        if (data.status.error == false) {
-            $scope.video = data.data;
-            $scope.video.url = $sce.trustAsResourceUrl($scope.video.url)
-        } else {
-            $scope.message = data.status.message;
-        }
-    }).error(function(data, status) {
-        $scope.message = "Error fetching data, please try again.";
-    });
+    $scope.video = Find.ById(API.videos, $stateParams.id);
+    $scope.video.url = $sce.trustAsResourceUrl($scope.video.url);
 
 })
 
-.controller('AudiosIndexCtrl', function($scope, $http, Header) {
+// Controller for audio resource
+.controller('AudiosIndexCtrl', function($scope, API) {
 
-    $scope.audios = {};
-
-    $http.post('http://localhost:8080/api/audios/index.php').success(function(data) {
-        if (data.status.error == false) {
-            $scope.audios = data.data;
-        } else {
-            $scope.message = data.status.message;
-        }
-    }).error(function(data, status) {
-        $scope.message = "Error fetching data, please try again.";
-    });
+    $scope.audios = API.audios;
 
 })
 
-.controller('AudiosSingleCtrl', function($scope, $http, $stateParams, $sce, Header) {
+// Controller for single audio
+.controller('AudiosSingleCtrl', function($scope, $stateParams, $sce, Header, API, Find) {
 
     $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'audios-index', 'Back');
-
-    $scope.json = {};
-    $scope.json.id = $stateParams.id;
-
-    $http.post('http://localhost:8080/api/audios/single.php', $scope.json).success(function(data) {
-        loading.hide();
-        if (data.status.error == false) {
-            $scope.audio = data.data;
-            $scope.audio.url = $sce.trustAsResourceUrl($scope.audio.url)
-        } else {
-            $scope.message = data.status.message;
-        }
-    }).error(function(data, status) {
-        $scope.message = "Error fetching data, please try again.";
-    });
+    $scope.audio = Find.ById(API.audios, $stateParams.id);
+    $scope.audio.url = $sce.trustAsResourceUrl($scope.audio.url);
 
 })
 
-.controller('MessagesIndexCtrl', function($scope, $http, Header) {
+// Controller for messages
+.controller('MessagesIndexCtrl', function($scope, Header, API) {
 
-    $scope.rightButtons = Header.button('ion-ios7-compose-outline', 'messages-create');
 
-    $http.post('http://localhost:8080/api/messages/index.php').success(function(data) {
-        if (data.status.error == false) {
-            $scope.messages = data.data;
-        } else {
-            $scope.message = data.status.message;
-        }
-    }).error(function(data, status) {
-        $scope.message = "Error fetching data, please try again.";
-    });
+    if (API.user.allowBlog) {
+        $scope.rightButtons = Header.button('ion-ios7-compose-outline', 'messages-create');
+    }
+
+    $scope.messages = API.messages;
 
 })
 
+// Controller for message compose
 .controller('MessagesCreateCtrl', function($scope, $http, Header) {
 
     $scope.post = {};
