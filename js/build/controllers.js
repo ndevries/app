@@ -1,7 +1,9 @@
 angular.module('app.controllers', [])
 
-// Controller for app header
-.controller('HeaderCtrl', function($scope) {
+// Controller for global app
+.controller('MainCtrl', function($scope, Menu, API, Config) {
+
+    $scope.client = Config.client;
 
     $scope.leftButtons = [
         {
@@ -12,11 +14,6 @@ angular.module('app.controllers', [])
             }
         }
     ];
-
-})
-
-// Controller for app menu
-.controller('MenuCtrl', function($scope, Menu, API) {
 
     $scope.menu = Menu.state();
 
@@ -38,7 +35,7 @@ angular.module('app.controllers', [])
         $state.go('resources');
     }
 
-    $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'videos-index', 'Cancel');
+    $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'landing', 'Cancel');
     $scope.user = {};
     $scope.user.id = localStorage['id'];
 
@@ -59,7 +56,7 @@ angular.module('app.controllers', [])
                     API.resources = data.Resources.Links;
                     localStorage['id'] = $scope.user.id;
                     localStorage['password'] = $scope.user.password;
-                    $state.go('resources');
+                    $state.go('welcome');
                 }
             })
             .error(function(data) {
@@ -70,11 +67,29 @@ angular.module('app.controllers', [])
 
 })
 
+// Controller for welcome page
+.controller('WelcomeCtrl', function($scope, API) {
+
+    $scope.intro = API.intro;
+
+})
+
 // Controller for resources
 .controller('ResourceCtrl', function($scope, API) {
 
-    $scope.intro = API.intro;
     $scope.resources = API.resources;
+
+})
+
+// Controller for resources
+.controller('PublicCtrl', function($scope, API, Header) {
+
+    $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'landing', 'Back');
+
+    API.publicMessage()
+        .success(function(data) {
+            $scope.url = data.message;
+        });
 
 })
 
@@ -86,11 +101,10 @@ angular.module('app.controllers', [])
 })
 
 // Controller for single video
-.controller('VideosSingleCtrl', function($scope, $stateParams, $sce, Header, API, Find) {
+.controller('VideosSingleCtrl', function($scope, $stateParams, Header, API, Find) {
 
     $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'videos-index', 'Back');
     $scope.video = Find.ById(API.videos, $stateParams.id);
-    $scope.video.url = $sce.trustAsResourceUrl($scope.video.url);
 
 })
 
@@ -102,17 +116,15 @@ angular.module('app.controllers', [])
 })
 
 // Controller for single audio
-.controller('AudiosSingleCtrl', function($scope, $stateParams, $sce, Header, API, Find) {
+.controller('AudiosSingleCtrl', function($scope, $stateParams, Header, API, Find) {
 
     $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'audios-index', 'Back');
     $scope.audio = Find.ById(API.audios, $stateParams.id);
-    $scope.audio.url = $sce.trustAsResourceUrl($scope.audio.url);
 
 })
 
 // Controller for messages
 .controller('MessagesIndexCtrl', function($scope, Header, API) {
-
 
     if (API.user.allowBlog) {
         $scope.rightButtons = Header.button('ion-ios7-compose-outline', 'messages-create');
@@ -127,12 +139,19 @@ angular.module('app.controllers', [])
 
     $scope.leftButtons = Header.button('ion-ios7-arrow-back', 'messages-index', 'Cancel');
     $scope.post = {};
+    $scope.post.UserID = API.user.id;
 
     $scope.send = function() {
 
         API.post($scope.post)
             .success(function(data) {
-                $scope.message = data.status.message;
+                if (typeof data.status != 'undefined' && data.status.error) {
+                    $scope.message = data.status.message;
+                } else {
+                    $scope.message = data.status.message;
+                    API.messages = data.Posts;
+                    $scope.post.Message = '';
+                }
             })
             .error(function(data) {
                 $scope.message = 'An error occurred.';

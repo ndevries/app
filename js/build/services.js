@@ -1,13 +1,24 @@
 angular.module('app.services', [])
 
-// Main service to store all data
-.service('API', function($http, $state, Menu) {
+// Main service to hold config variables
+.service('Config', function() {
 
-    var baseURL = 'http://www.proalliance.biz/api/default.aspx';
-    var apikey = '123';
+    this.client   = 'Proalliance';
+    this.platform = 'android'; // ios7 or android
+    this.url      = 'http://www.proalliance.biz/api/default.aspx';
+    this.key      = '123';
+
+})
+
+// Main service to store all data
+.service('API', function($http, $state, Menu, Config) {
 
     this.login = function(user) {
-        return $http.get(baseURL + '?apikey=' + apikey + '&method=login&UserName=' + user.id + '&Password=' + user.password);
+        return $http.get(Config.url + '?apikey=' + Config.key + '&method=login&UserName=' + user.id + '&Password=' + user.password);
+    };
+
+    this.publicMessage = function() {
+        return $http.get(Config.url + '?apikey=' + Config.key + '&method=publicmessage');
     };
 
     this.logout = function() {
@@ -22,8 +33,13 @@ angular.module('app.services', [])
         $state.go('landing');
     };
 
-    this.post = function(data) {
-        return $http.post(baseURL + '?apikey=' + apikey + '&method=addpost', 'UserID=' + this.user.id + '&Message=' + data.Message);
+    this.post = function(postData) {
+        return $http({
+            method: 'POST',
+            url: Config.url + '?apikey=' + Config.key + '&method=addpost',
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+            data: $.param(postData)
+        });
     };
 
     this.auth = false;
@@ -61,7 +77,7 @@ angular.module('app.services', [])
 })
 
 // Service to control the header
-.factory('Header', function($state) {
+.factory('Header', function($state, Config) {
 
     return {
 
@@ -92,6 +108,11 @@ angular.module('app.services', [])
                 return arr[d];
             }
         }
+    };
+
+    this.BySrc = function(source) {
+        var regex = / src=\"([^"]*)\"/;
+        return regex.exec(source)[1];
     };
 
 });

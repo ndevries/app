@@ -1,7 +1,11 @@
 angular.module('app', ['ionic', 'app.services', 'app.controllers', 'audioPlayer'])
 
 // Routing
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
+
+  $sceDelegateProvider.resourceUrlWhitelist([
+    '**'
+  ]);
 
   $stateProvider
 
@@ -18,7 +22,14 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers', 'audioPlayer'
 
     .state('public', {
       url: '/public',
-      templateUrl: 'views/public.html'
+      templateUrl: 'views/public.html',
+      controller: 'PublicCtrl'
+    })
+
+    .state('welcome', {
+      url: '/welcome',
+      templateUrl: 'views/welcome.html',
+      controller: 'WelcomeCtrl'
     })
 
     .state('resources', {
@@ -68,28 +79,7 @@ angular.module('app', ['ionic', 'app.services', 'app.controllers', 'audioPlayer'
 })
 
 // Check for authentication
-.run(function($rootScope, $location, API, Menu, $state) {
-
-  if (localStorage.getItem('id') !== null && localStorage.getItem('password') !== null) {
-
-    var user = {
-      id: localStorage['id'],
-      password: localStorage['password']
-    };
-
-    API.login(user)
-      .success(function(data) {
-        Menu.show();
-        API.auth = true;
-        API.user = data.TheUser;
-        API.audios = data.MP3s;
-        API.videos = data.Videos;
-        API.messages = data.Posts;
-        API.intro = data.Resources.message;
-        API.resources = data.Resources.Links;
-      });
-
-  }
+.run(function($rootScope, $location, API, Menu) {
 
   var publicRoutes = [
     '/landing',

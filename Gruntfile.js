@@ -7,7 +7,6 @@ module.exports = function(grunt) {
         files: {
           'css/app.min.css': [
             'bower_components/ionic/release/css/ionic.min.css',
-            'bower_components/videogular-themes-default/videogular.css',
             'css/build/app.css'
           ]
         }
@@ -16,6 +15,7 @@ module.exports = function(grunt) {
     concat: {
       main: {
         src: [
+          'bower_components/jquery/dist/jquery.js',
           'bower_components/ionic/release/js/ionic.js',
           'bower_components/angular/angular.js',
           'bower_components/angular-animate/angular-animate.js',

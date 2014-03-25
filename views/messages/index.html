@@ -5,11 +5,11 @@
                 {{ message }}
             </div>
         </div>
-        <div class="list card" ng-repeat="message in messages">
+        <div class="list card" ng-repeat="message in messages | orderBy: 'PostDate':true">
 
             <div class="item item-text-wrap">
                 <h2>{{ message.Author }}</h2>
-                <p>{{ message.PostDate }}</p>
+                <p>{{ message.PostDate | date:'MMM d @ h:mm a' }}</p>
             </div>
 
             <div class="item item-body">
